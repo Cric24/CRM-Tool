@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Tickets</title>
+    <style>
+             
+ body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: url('/static/moon-night-seascape-sailing-boat-blue-minimal-5k-8k-3840x2160-4522.jpg') center/cover no-repeat, rgba(0, 0, 0, 0.2);
+    background-blend-mode: darken;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+body::before {
+    content: '';
+    position:fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+
+nav {
+    width: 103%;
+    margin-left: -20px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #204d7a, #21f3447a);
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid #1976D2;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+    font-size: 22px;
+}
+
+nav a:hover {
+    color: #FFEB3B;
+    transform: scale(1.1);
+}
+
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    animation: fadeIn 1s ease-in;
+    flex-grow: 1;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    margin-top: 60px;
+    color: #e4d6d6;
+    margin-bottom: 40px;
+    font-size: 36px;
+    position: relative;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+h1::after {
+    content: '';
+    width: 100px;
+    height: 4px;
+    background: #2196F3;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+a{
+    color: #f3eeee;
+    margin-top: 20px;
+    margin-left: 580px;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-left: 400px;
+    width: 40%;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #f4f4f4;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li a {
+    color: #d9534f;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+li a:hover {
+    color: #c9302c;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('contacts') }}">Contacts</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('support_tickets') }}">Support Tickets</a>
+</nav>
+
+{% block content %}
+<center><h1>Support Tickets</h1></center>
+<a href="{{ url_for('add_ticket') }}">Submit New Ticket</a>
+<ul>
+    {% for ticket in tickets %}
+    <li>{{ ticket.issue }} - {{ ticket.status }} (Contact ID: {{ ticket.contact_id }})
+        <a href="{{ url_for('delete_ticket', id=ticket.id) }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Details</title>
+    <style>
+             
+ body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: url('/static/pexels-frank-cone-140140-2361600.jpg') center/cover no-repeat, rgba(0, 0, 0, 0.2);
+    background-blend-mode: darken;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+body::before {
+    content: '';
+    position:fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+
+nav {
+    margin-left: -22px;
+    width: 103%;
+    background: linear-gradient(90deg, #46184e, #21cdf393);
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 11px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid #1976D2;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: #FFEB3B;
+    transform: scale(1.1);
+}
+
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    overflow: hidden;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    animation: fadeIn 1s ease-in;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    margin-top: 40px;
+    color: #f8f3f3;
+    margin-bottom: 40px;
+    font-size: 32px;
+    text-align: center;
+    position: relative;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+h1::after {
+    content: '';
+    width: 100px;
+    height: 4px;
+    background: #2196F3;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+p {
+    padding-left: 500px;
+    text-align: justify;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #f5f1f1;
+}
+
+h2 {
+    color: #faf6f6;
+    margin-top: 40px;
+    font-size: 28px;
+    text-align: center;
+    position: relative;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: #FF5722;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+ul {
+    margin-left: 450px;
+    width: 35%;
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 18px;
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+li:hover {
+    transform: translateX(5px);
+}
+
+a {
+    color: #2196F3;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 160px;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #FF5722;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        font-size: 24px;
+    }
+
+    p, li {
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('contacts') }}">Contacts</a>
+        <a href="{{ url_for('sales') }}">Sales</a>
+        <a href="{{ url_for('support_tickets') }}">Support Tickets</a>
+    </nav>
+    
+    {% block content %}
+   <center> <h1>{{ contact.name }}</h1>
+    <p>ID: {{ contact.id }}</p>
+    <p>Email: {{ contact.email }}</p>
+    <p>Phone: {{ contact.phone }}</p>
+    <p>Company: {{ contact.company }}</p> </center> 
+    
+    <h2>Sales</h2>
+    <ul>
+        {% for sale in contact.sales %}
+        <li>{{ sale.date }} - ${{ sale.amount }}
+            <a href="{{ url_for('delete_sale', id=sale.id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Support Tickets</h2>
+    <ul>
+        {% for ticket in contact.tickets %}
+        <li>{{ ticket.issue }} - {{ ticket.status }}
+            <a href="{{ url_for('delete_ticket', id=ticket.id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+    
+    
+</body>
+</html>

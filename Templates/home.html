@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('/static/planets-colorful-gradients-orbit-minimal-art-illustration-3840x2160-5722.jpg') center/cover no-repeat, rgba(0, 0, 0, 0.2);
+    background-blend-mode: darken;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        
+body::before {
+    content: '';
+    position:fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+
+        nav {
+            border-radius: 10px;
+            background: linear-gradient(90deg, #00090f, #21CBF3);
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #1976D2;
+        }
+
+        nav a {
+            font-style: oblique;
+            text-decoration: none;
+            color: #fff;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s;
+            font-size: 22px;
+        }
+
+        nav a:hover {
+            color: #FFEB3B;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?business') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero h1 {
+            color: #e6e5f7;
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: slideInDown 1s ease-in;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            animation: slideInUp 1s ease-in;
+        }
+
+        .hero button {
+            background: #FFEB3B;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border-radius: 5px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .hero button:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            animation: fadeIn 1s ease-in;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            color: #312e2e;
+            margin-bottom: 50px;
+            font-size: 36px;
+            position: relative;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        h1::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: #2196F3;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 5px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin: 20px 0;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            color: #2196F3;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section h2 i {
+            margin-right: 10px;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        footer {
+            background: #2195f35d;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: auto;
+            position: relative;
+        }
+
+        footer .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        footer .footer-content div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        footer .footer-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-content p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        footer .social-links a:hover {
+            color: #FFEB3B;
+        }
+
+        footer .footer-bottom {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+                font-size: 16px;
+            }
+
+            .container {
+                width: 90%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('contacts') }}">Contacts</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('support_tickets') }}">Support Tickets</a>
+</nav>
+
+<div class="hero">
+    <h1>Welcome to the CRM Tool</h1>
+    <p>Manage your contacts, sales, and support tickets efficiently with our intuitive CRM tool.</p>
+    <button>Get Started</button>
+</div>
+
+<div class="container">
+    {% block content %}
+    <h1>Our Services</h1>
+    <div class="section">
+        <h2><i class="fas fa-address-book"></i> Contacts</h2>
+        <p>Keep track of all your business contacts in one place. View, add, and manage contact details easily.</p>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-chart-line"></i> Sales</h2>
+        <p>Monitor your sales activity and performance. Add new sales records and track them effortlessly.</p>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-ticket-alt"></i> Support Tickets</h2>
+        <p>Handle customer support efficiently. Submit, view, and manage support tickets with ease.</p>
+    </div>
+    {% endblock %}
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <h4>About Us</h4>
+            <p>We are dedicated to providing the best CRM tools to help businesses manage their contacts, sales, and support tickets with ease.</p>
+        </div>
+        <div>
+            <h4>Contact Us</h4>
+            <p>Email: support@crmtool.com<br>Phone: +94 76-999-9999</p>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2024 CRM Tool. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>
